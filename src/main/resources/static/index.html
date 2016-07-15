@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Register</title>
+    <meta name="description" content="desc">
+    <meta name="author" content="cucumbers">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="modal-header">
+        <h2 class="h2">Registration form</h2>
+    </div>
+
+
+    <form id="registerForm">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="inputNumber">Type your number</label>
+                    <input type="text" class="form-control" id="inputNumber" name="inputNumber">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form group">
+                    <div class="form control">
+                        <div class="radio">
+                            <label><input type="radio" name="convertOption" value="fromString">Roman to number conversion</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="convertOption" value="fromNumber">Number to roman conversion</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="convertOption" value="auto" checked>Auto detection</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="container">
+        <h2>Result is: <span class="result"> 23 </span></h2>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="js/main.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</body>
