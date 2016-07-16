@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 /** Created by Mateusz on 2016-07-15. */
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/convert")
 public class ApiController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class ApiController {
     @RequestMapping("/fromString/{string}")
     public String fromString(@PathVariable String string){
         String result = "";
-        if(romanNumerals.isValid("XVIII")){
+        if(romanNumerals.isValid(string)){
             int resultNumber = romanNumerals.convert(string);
             result = String.valueOf(resultNumber);
         }
@@ -35,7 +35,7 @@ public class ApiController {
         int number;
         try {
             number = Integer.parseInt(input);
-        } catch (ClassCastException stringToIntFailed) {
+        } catch (NumberFormatException e) {
             return fromString(input);
         }
         return fromNumber(number);

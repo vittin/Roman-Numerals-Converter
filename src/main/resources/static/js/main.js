@@ -51,5 +51,6 @@ var convert = {
 };
 
 function showResults(response){
+    console.log(response);
     $("#result").text(response);
 }
