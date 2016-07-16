@@ -27,7 +27,7 @@ public enum RomanChar {
         return this.value < number;
     }
 
-    public boolean isGratherThan(int number){
+    public boolean isGraterThan(int number){
         return this.value > number;
     }
 

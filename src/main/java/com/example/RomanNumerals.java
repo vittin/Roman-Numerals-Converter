@@ -1,7 +1,11 @@
 package com.example;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Mateusz on 2016-07-15.
@@ -23,13 +27,6 @@ public class RomanNumerals {
         return true;
     }
 
-    public String convert(int number) {
-
-        final StringBuilder stringBuilder = new StringBuilder();
-
-        return stringBuilder.toString();
-    }
-
     //string must be validate before call this
     //use isValid() method
     public int convert(String romanNumeral){
@@ -47,6 +44,52 @@ public class RomanNumerals {
             value += checkValue(currentChar, nextChar);
         }
         return value;
+    }
+
+    public String convert(int number) {
+
+        final StringBuilder stringBuilder = new StringBuilder();
+        List<Integer> preparedNumbers = prepareNumbers(number);
+        for (Integer preparedNumber : preparedNumbers) {
+            String numeral = createNumeral(preparedNumber);
+            stringBuilder.append(numeral);
+        }
+
+        return stringBuilder.toString();
+    }
+
+    private List<Integer> prepareNumbers(int number) {
+        List<Integer> preparedNumber = new ArrayList<>();
+        preparedNumber.add(0, number);
+        int index = 1;
+        while (number > 0){
+            int poweredModulo = (int) Math.pow(10, String.valueOf(number).length() - 1);
+
+            number = number % (poweredModulo);
+            preparedNumber.add(index, number);
+
+            int rightValue = preparedNumber.get(index - 1) - number;
+            preparedNumber.set(index - 1, rightValue);
+            index += 1;
+            if (number < 10){
+                number = 0;
+            }
+        }
+        return preparedNumber;
+    }
+
+    @NotNull
+    private String createNumeral(Integer preparedNumber) {
+        StringBuilder subStringBuilder = new StringBuilder();
+
+        while (preparedNumber > 0){
+            String numeral = RomanChars.getBestNumeral(preparedNumber);
+            subStringBuilder.append(numeral);
+            preparedNumber -= convert(numeral);
+
+        }
+
+        return subStringBuilder.toString();
     }
 
     static private boolean skip = false;
