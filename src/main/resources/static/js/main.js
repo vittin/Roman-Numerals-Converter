@@ -39,6 +39,9 @@ var convert = {
             .done(function(response){
                 showResults(response);
             })
+            .fail(function(response){
+                handleBadRequest(response);
+            });
     },
 
     unknownType: function(userInput){
@@ -46,11 +49,39 @@ var convert = {
             .done(function(response){
                 showResults(response);
             })
+            .fail(function(response){
+                handleBadRequest(response);
+            });
     }
 
 };
 
 function showResults(response){
     console.log(response);
+    $("#info").show();
     $("#result").text(response);
+}
+
+function handleBadRequest(response){
+    if (response.status == 400){
+        $("#info").hide();
+
+        var result = $("#result");
+        result.text("");
+        result.append("<a href='#' class='repairLink'>"+response.responseText+"</a>");
+
+        enableRepairLink(response.getResponseHeader("bestNumeral"));
+    }
+}
+
+function enableRepairLink(bestNumeral){
+    var link = $(".repairLink");
+    link.on("click", function(){
+        console.log("hi"+bestNumeral);
+        var numeral = link.attr("data-numeral");
+        $("#inputNumber").val(bestNumeral);
+        convert.fromString(bestNumeral);
+        link.unbind();
+    });
+
 }

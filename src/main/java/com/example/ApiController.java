@@ -1,6 +1,9 @@
 package com.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,23 +18,32 @@ public class ApiController {
     RomanNumerals romanNumerals;
 
     @RequestMapping("/fromNumber/{number}")
-    public String fromNumber(@PathVariable int number){
+    public ResponseEntity<String> fromNumber(@PathVariable int number){
         String result = romanNumerals.convert(number);
-        return result;
+        return new ResponseEntity<String>(result, HttpStatus.OK);
     }
 
     @RequestMapping("/fromString/{string}")
-    public String fromString(@PathVariable String string){
+    public ResponseEntity<String> fromString(@PathVariable String string){
+        String input = string.toUpperCase();
         String result = "";
-        if(romanNumerals.isValid(string)){
+        if(romanNumerals.isValid(input)){
             int resultNumber = romanNumerals.convert(string);
             result = String.valueOf(resultNumber);
+
+            String bestNumeral = romanNumerals.convert(resultNumber);
+            if (!input.equals(bestNumeral)){
+                String error = "Invalid numeral. Maybe try " + bestNumeral;
+                HttpHeaders headers = new HttpHeaders();
+                headers.set("bestNumeral", bestNumeral);
+                return new ResponseEntity<>(error, headers, HttpStatus.BAD_REQUEST);
+            }
         }
-        return result;
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @RequestMapping("/detect/{input}")
-    public String fromNumber(@PathVariable String input){
+    public ResponseEntity<String> detect(@PathVariable String input){
         int number;
         try {
             number = Integer.parseInt(input);

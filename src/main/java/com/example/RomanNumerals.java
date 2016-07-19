@@ -29,7 +29,7 @@ public class RomanNumerals {
 
     //string must be validate before call this
     //use isValid() method
-    public int convert(String romanNumeral){
+    public int convert(String romanNumeral) {
 
         romanNumeral = romanNumeral.toUpperCase();
         int numeralLength = romanNumeral.length();
@@ -43,6 +43,7 @@ public class RomanNumerals {
             nextChar = (i+1 < numeralLength) ? romanNumeral.charAt(i+1) : null;
             value += checkValue(currentChar, nextChar);
         }
+
         return value;
     }
 
@@ -55,7 +56,9 @@ public class RomanNumerals {
             stringBuilder.append(numeral);
         }
 
-        return stringBuilder.toString();
+        final String result = stringBuilder.toString();
+
+        return result;
     }
 
     private List<Integer> prepareNumbers(int number) {
@@ -75,6 +78,7 @@ public class RomanNumerals {
                 number = 0;
             }
         }
+
         return preparedNumber;
     }
 
