@@ -33,7 +33,7 @@ public class ApiController {
 
             String bestNumeral = romanNumerals.convert(resultNumber);
             if (!input.equals(bestNumeral)){
-                String error = "Invalid numeral. Maybe try " + bestNumeral;
+                String error = "Invalid numeral. Did you mean " + bestNumeral;
                 HttpHeaders headers = new HttpHeaders();
                 headers.set("bestNumeral", bestNumeral);
                 return new ResponseEntity<>(error, headers, HttpStatus.BAD_REQUEST);
