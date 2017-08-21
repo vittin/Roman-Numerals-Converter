@@ -42,11 +42,11 @@ public class RomanCharsTest {
     @Test
     public void shouldReturnClosestNumber(){
         assertEquals("I", RomanChars.getBestNumeral(2));
-        assertEquals("I", RomanChars.getBestNumeral(4));
-        assertEquals("I", RomanChars.getBestNumeral(5));
+        assertEquals("IV", RomanChars.getBestNumeral(4));
+        assertEquals("V", RomanChars.getBestNumeral(5));
         assertEquals("V", RomanChars.getBestNumeral(6));
-        assertEquals("V", RomanChars.getBestNumeral(9));
-        assertEquals("V", RomanChars.getBestNumeral(10));
+        assertEquals("IX", RomanChars.getBestNumeral(9));
+        assertEquals("X", RomanChars.getBestNumeral(10));
         assertEquals("X", RomanChars.getBestNumeral(11));
 
     }

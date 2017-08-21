@@ -1,7 +1,5 @@
 package com.example;
 
-import com.sun.istack.internal.Nullable;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +28,6 @@ public class RomanChars {
         return false;
     }
 
-    @Nullable
     public static RomanChar get(char c) {
         for (RomanChar romanChar : romanChars){
             if (romanChar.getName() == c){
@@ -40,7 +37,6 @@ public class RomanChars {
         return null;
     }
 
-    @Nullable
     public static RomanChar get(String s){
         return get(s.charAt(0));
     }

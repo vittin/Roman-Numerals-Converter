@@ -1,7 +1,5 @@
 package com.example;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -36,7 +34,7 @@ public class RomanNumerals {
         int value = 0;
 
         Character currentChar;
-        @Nullable Character nextChar;
+        Character nextChar;
 
         for(int i = 0; i < romanNumeral.length(); i++){
             currentChar = romanNumeral.charAt(i);
@@ -82,7 +80,6 @@ public class RomanNumerals {
         return preparedNumber;
     }
 
-    @NotNull
     private String createNumeral(Integer preparedNumber) {
         StringBuilder subStringBuilder = new StringBuilder();
 
@@ -97,7 +94,7 @@ public class RomanNumerals {
     }
 
     static private boolean skip = false;
-    private int checkValue(Character currentChar, @Nullable Character nextChar) {
+    private int checkValue(Character currentChar, Character nextChar) {
         if (skip){
             skip = false;
             return 0;
